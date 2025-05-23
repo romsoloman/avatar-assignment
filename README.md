@@ -19,7 +19,7 @@ A simple and efficient Node.js server for generating user avatar images on the f
 1. **Clone the repository:**
 
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/romsoloman/avatar-assignment.git
    cd avatar-server
    ```
 
@@ -102,12 +102,6 @@ GET http://localhost:3000/user-avatar?name=Jane&backgroundColor=xyz123
 - **Robustness:** The API is designed to handle edge cases gracefully and will not throw errors for special characters, emoji, or digits in the name.
 - **Customization:** You can adjust avatar size, font, and default colors in `src/constants/avatarConstants.ts`.
 - **Environment Variables:** You can set a custom port by defining `PORT` in a `.env` file.
-
----
-
-## 🤝 Contributing
-
-Pull requests and issues are welcome! Please open an issue to discuss your ideas or report bugs.
 
 ---
 
