@@ -1,6 +1,7 @@
 import { Request, Response } from "express"
 import generateAvatar from "../utils/generateAvatar"
 import { avatarQuerySchema } from "../validation/avatarQuerySchema"
+import type { ZodIssue } from "zod"
 
 export const userAvatarController = async (
   req: Request,
@@ -10,7 +11,9 @@ export const userAvatarController = async (
     const validationResult = avatarQuerySchema.safeParse(req.query)
     if (!validationResult.success) {
       res.status(400).json({
-        error: validationResult.error.issues.map((i) => i.message).join(", ")
+        error: validationResult.error.issues
+          .map((i: ZodIssue) => i.message)
+          .join(", ")
       })
       return
     }
