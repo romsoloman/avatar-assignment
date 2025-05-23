@@ -1,5 +1,7 @@
 import { Request, Response } from "express"
-import generateAvatar from "../utils/generateAvatar"
+import generateAvatar, {
+  normalizeBackgroundColor
+} from "../utils/generateAvatar"
 import { avatarQuerySchema } from "../validation/avatarQuerySchema"
 import type { ZodIssue } from "zod"
 
@@ -18,9 +20,7 @@ export const userAvatarController = async (
       return
     }
     let { name, backgroundColor } = validationResult.data
-    if (backgroundColor && !backgroundColor.startsWith("#")) {
-      backgroundColor = `#${backgroundColor}`
-    }
+    backgroundColor = normalizeBackgroundColor(backgroundColor)
     const avatarBuffer = await generateAvatar(name, backgroundColor)
     res.set("Content-Type", "image/png").send(avatarBuffer)
   } catch (err) {

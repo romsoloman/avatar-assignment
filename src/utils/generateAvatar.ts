@@ -33,3 +33,12 @@ export default async function generateAvatar(
   const svgBuffer = Buffer.from(svg)
   return sharp(svgBuffer).png().toBuffer()
 }
+
+export function normalizeBackgroundColor(
+  backgroundColor?: string
+): string | undefined {
+  if (!backgroundColor) return backgroundColor
+  return backgroundColor.startsWith("#")
+    ? backgroundColor
+    : `#${backgroundColor}`
+}
