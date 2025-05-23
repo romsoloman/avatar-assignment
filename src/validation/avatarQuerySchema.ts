@@ -1,4 +1,5 @@
 import { z } from "zod"
+import { AVATAR_BG_COLOR_REGEX } from "../constants/avatarConstants"
 
 export const avatarQuerySchema = z.object({
   name: z
@@ -12,7 +13,7 @@ export const avatarQuerySchema = z.object({
   backgroundColor: z
     .string()
     .trim()
-    .regex(/^#?[0-9a-fA-F]{6}$/, {
+    .regex(AVATAR_BG_COLOR_REGEX, {
       message:
         "backgroundColor must be a valid 6-character HEX code (with or without #)."
     })
